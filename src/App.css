@@ -1,0 +1,45 @@
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  text-align: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+}   
+.amplify-grid{
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1px !important;
+    padding: 2px !important;
+}
+.amplify-button {
+  margin-left: 20px;
+}
+.amplify-flex {
+  padding-top: 1%;
+  padding-bottom: 3%;
+  padding-left: 15px;
+  display: -webkit-inline-box;
+}
+.table-list {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 1px !important;
+  padding: 2px !important;
+}
+
+.table-list th {
+  padding-right: 20vw
+}
