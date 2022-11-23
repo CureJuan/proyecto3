@@ -1,5 +1,5 @@
 import './App.css';
-//import DiscosCreateForm from './ui-components/DiscosCreateForm'
+import DiscosCreateForm from './ui-components/DiscosCreateForm'
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
         <h1 className='title'>
          Listado de {process.env.REACT_APP_NAME}
         </h1>
-    
+        <DiscosCreateForm />
       <div>
    
         <table className="table-list">
