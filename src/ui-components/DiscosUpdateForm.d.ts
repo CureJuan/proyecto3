@@ -17,11 +17,15 @@ export declare type DiscosUpdateFormInputValues = {
     title?: string;
     band?: string;
     year?: number;
+    color?: number;
+    textcolor?: number;
 };
 export declare type DiscosUpdateFormValidationValues = {
     title?: ValidationFunction<string>;
     band?: ValidationFunction<string>;
     year?: ValidationFunction<number>;
+    color?: ValidationFunction<number>;
+    textcolor?: ValidationFunction<number>;
 };
 export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type DiscosUpdateFormOverridesProps = {
@@ -29,6 +33,8 @@ export declare type DiscosUpdateFormOverridesProps = {
     title?: FormProps<TextFieldProps>;
     band?: FormProps<TextFieldProps>;
     year?: FormProps<TextFieldProps>;
+    color?: FormProps<TextFieldProps>;
+    textcolor?: FormProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type DiscosUpdateFormProps = React.PropsWithChildren<{
     overrides?: DiscosUpdateFormOverridesProps | undefined | null;

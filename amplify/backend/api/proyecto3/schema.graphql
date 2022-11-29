@@ -3,4 +3,7 @@ type Discos @model @auth(rules: [{allow: public}]) {
   title: String!
   band: String!
   year: Int!
-} 
+  color: Int
+  textcolor: Int
+}
+ 

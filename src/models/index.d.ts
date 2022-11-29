@@ -15,6 +15,8 @@ type EagerDiscos = {
   readonly title: string;
   readonly band: string;
   readonly year: number;
+  readonly color?: number | null;
+  readonly textcolor?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -28,6 +30,8 @@ type LazyDiscos = {
   readonly title: string;
   readonly band: string;
   readonly year: number;
+  readonly color?: number | null;
+  readonly textcolor?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

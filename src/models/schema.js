@@ -31,6 +31,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "color": {
+                    "name": "color",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "textcolor": {
+                    "name": "textcolor",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -77,5 +91,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "9d5d0e97f90728e41b9095d9c622f963"
+    "version": "1b96d193ecf97dc9e68aceacb341d236"
 };

@@ -27,21 +27,29 @@ export default function DiscosCreateForm(props) {
     title: undefined,
     band: undefined,
     year: undefined,
+    color: undefined,
+    textcolor: undefined,
   };
   const [title, setTitle] = React.useState(initialValues.title);
   const [band, setBand] = React.useState(initialValues.band);
   const [year, setYear] = React.useState(initialValues.year);
+  const [color, setColor] = React.useState(initialValues.color);
+  const [textcolor, setTextcolor] = React.useState(initialValues.textcolor);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setTitle(initialValues.title);
     setBand(initialValues.band);
     setYear(initialValues.year);
+    setColor(initialValues.color);
+    setTextcolor(initialValues.textcolor);
     setErrors({});
   };
   const validations = {
     title: [{ type: "Required" }],
     band: [{ type: "Required" }],
     year: [{ type: "Required" }],
+    color: [],
+    textcolor: [],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -64,6 +72,8 @@ export default function DiscosCreateForm(props) {
           title,
           band,
           year,
+          color,
+          textcolor,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -115,6 +125,8 @@ export default function DiscosCreateForm(props) {
               title: value,
               band,
               year,
+              color,
+              textcolor,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -140,6 +152,8 @@ export default function DiscosCreateForm(props) {
               title,
               band: value,
               year,
+              color,
+              textcolor,
             };
             const result = onChange(modelFields);
             value = result?.band ?? value;
@@ -174,6 +188,8 @@ export default function DiscosCreateForm(props) {
               title,
               band,
               year: value,
+              color,
+              textcolor,
             };
             const result = onChange(modelFields);
             value = result?.year ?? value;
@@ -187,6 +203,78 @@ export default function DiscosCreateForm(props) {
         errorMessage={errors.year?.errorMessage}
         hasError={errors.year?.hasError}
         {...getOverrideProps(overrides, "year")}
+      ></TextField>
+      <TextField
+        label="Color"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        onChange={(e) => {
+          let value = parseInt(e.target.value);
+          if (isNaN(value)) {
+            setErrors((errors) => ({
+              ...errors,
+              color: "Value must be a valid number",
+            }));
+            return;
+          }
+          if (onChange) {
+            const modelFields = {
+              title,
+              band,
+              year,
+              color: value,
+              textcolor,
+            };
+            const result = onChange(modelFields);
+            value = result?.color ?? value;
+          }
+          if (errors.color?.hasError) {
+            runValidationTasks("color", value);
+          }
+          setColor(value);
+        }}
+        onBlur={() => runValidationTasks("color", color)}
+        errorMessage={errors.color?.errorMessage}
+        hasError={errors.color?.hasError}
+        {...getOverrideProps(overrides, "color")}
+      ></TextField>
+      <TextField
+        label="Textcolor"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        onChange={(e) => {
+          let value = parseInt(e.target.value);
+          if (isNaN(value)) {
+            setErrors((errors) => ({
+              ...errors,
+              textcolor: "Value must be a valid number",
+            }));
+            return;
+          }
+          if (onChange) {
+            const modelFields = {
+              title,
+              band,
+              year,
+              color,
+              textcolor: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.textcolor ?? value;
+          }
+          if (errors.textcolor?.hasError) {
+            runValidationTasks("textcolor", value);
+          }
+          setTextcolor(value);
+        }}
+        onBlur={() => runValidationTasks("textcolor", textcolor)}
+        errorMessage={errors.textcolor?.errorMessage}
+        hasError={errors.textcolor?.hasError}
+        {...getOverrideProps(overrides, "textcolor")}
       ></TextField>
       <Flex
         justifyContent="space-between"
