@@ -7,14 +7,14 @@
 /* eslint-disable */
 import * as React from "react";
 import { fetchByPath, validateField } from "./utils";
-import { Discos } from "../models";
+import { Colors } from "../models";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
-export default function DiscosUpdateForm(props) {
+export default function ColorsUpdateForm(props) {
   const {
     id,
-    discos,
+    colors,
     onSuccess,
     onError,
     onSubmit,
@@ -25,40 +25,28 @@ export default function DiscosUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    title: undefined,
-    band: undefined,
-    year: undefined,
     color: undefined,
     textcolor: undefined,
   };
-  const [title, setTitle] = React.useState(initialValues.title);
-  const [band, setBand] = React.useState(initialValues.band);
-  const [year, setYear] = React.useState(initialValues.year);
   const [color, setColor] = React.useState(initialValues.color);
   const [textcolor, setTextcolor] = React.useState(initialValues.textcolor);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = { ...initialValues, ...discosRecord };
-    setTitle(cleanValues.title);
-    setBand(cleanValues.band);
-    setYear(cleanValues.year);
+    const cleanValues = { ...initialValues, ...colorsRecord };
     setColor(cleanValues.color);
     setTextcolor(cleanValues.textcolor);
     setErrors({});
   };
-  const [discosRecord, setDiscosRecord] = React.useState(discos);
+  const [colorsRecord, setColorsRecord] = React.useState(colors);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = id ? await DataStore.query(Discos, id) : discos;
-      setDiscosRecord(record);
+      const record = id ? await DataStore.query(Colors, id) : colors;
+      setColorsRecord(record);
     };
     queryData();
-  }, [id, discos]);
-  React.useEffect(resetStateValues, [discosRecord]);
+  }, [id, colors]);
+  React.useEffect(resetStateValues, [colorsRecord]);
   const validations = {
-    title: [{ type: "Required" }],
-    band: [{ type: "Required" }],
-    year: [{ type: "Required" }],
     color: [],
     textcolor: [],
   };
@@ -80,9 +68,6 @@ export default function DiscosUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          title,
-          band,
-          year,
           color,
           textcolor,
         };
@@ -110,7 +95,7 @@ export default function DiscosUpdateForm(props) {
         }
         try {
           await DataStore.save(
-            Discos.copyOf(discosRecord, (updated) => {
+            Colors.copyOf(colorsRecord, (updated) => {
               Object.assign(updated, modelFields);
             })
           );
@@ -124,101 +109,8 @@ export default function DiscosUpdateForm(props) {
         }
       }}
       {...rest}
-      {...getOverrideProps(overrides, "DiscosUpdateForm")}
+      {...getOverrideProps(overrides, "ColorsUpdateForm")}
     >
-      <TextField
-        label="Title"
-        isRequired={true}
-        isReadOnly={false}
-        defaultValue={title}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              title: value,
-              band,
-              year,
-              color,
-              textcolor,
-            };
-            const result = onChange(modelFields);
-            value = result?.title ?? value;
-          }
-          if (errors.title?.hasError) {
-            runValidationTasks("title", value);
-          }
-          setTitle(value);
-        }}
-        onBlur={() => runValidationTasks("title", title)}
-        errorMessage={errors.title?.errorMessage}
-        hasError={errors.title?.hasError}
-        {...getOverrideProps(overrides, "title")}
-      ></TextField>
-      <TextField
-        label="Band"
-        isRequired={true}
-        isReadOnly={false}
-        defaultValue={band}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              title,
-              band: value,
-              year,
-              color,
-              textcolor,
-            };
-            const result = onChange(modelFields);
-            value = result?.band ?? value;
-          }
-          if (errors.band?.hasError) {
-            runValidationTasks("band", value);
-          }
-          setBand(value);
-        }}
-        onBlur={() => runValidationTasks("band", band)}
-        errorMessage={errors.band?.errorMessage}
-        hasError={errors.band?.hasError}
-        {...getOverrideProps(overrides, "band")}
-      ></TextField>
-      <TextField
-        label="Year"
-        isRequired={true}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        defaultValue={year}
-        onChange={(e) => {
-          let value = parseInt(e.target.value);
-          if (isNaN(value)) {
-            setErrors((errors) => ({
-              ...errors,
-              year: "Value must be a valid number",
-            }));
-            return;
-          }
-          if (onChange) {
-            const modelFields = {
-              title,
-              band,
-              year: value,
-              color,
-              textcolor,
-            };
-            const result = onChange(modelFields);
-            value = result?.year ?? value;
-          }
-          if (errors.year?.hasError) {
-            runValidationTasks("year", value);
-          }
-          setYear(value);
-        }}
-        onBlur={() => runValidationTasks("year", year)}
-        errorMessage={errors.year?.errorMessage}
-        hasError={errors.year?.hasError}
-        {...getOverrideProps(overrides, "year")}
-      ></TextField>
       <TextField
         label="Color"
         isRequired={false}
@@ -237,9 +129,6 @@ export default function DiscosUpdateForm(props) {
           }
           if (onChange) {
             const modelFields = {
-              title,
-              band,
-              year,
               color: value,
               textcolor,
             };
@@ -274,9 +163,6 @@ export default function DiscosUpdateForm(props) {
           }
           if (onChange) {
             const modelFields = {
-              title,
-              band,
-              year,
               color,
               textcolor: value,
             };

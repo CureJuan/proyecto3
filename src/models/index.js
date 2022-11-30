@@ -4,8 +4,8 @@ import { schema } from './schema';
 
 
 
-const { Discos } = initSchema(schema);
+const { Colors } = initSchema(schema);
 
 export {
-  Discos
+  Colors
 };

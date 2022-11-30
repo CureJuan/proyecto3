@@ -5,5 +5,5 @@
  **************************************************************************/
 
 export { default as studioTheme } from "./studioTheme";
-export { default as DiscosCreateForm } from "./DiscosCreateForm";
-export { default as DiscosUpdateForm } from "./DiscosUpdateForm";
+export { default as ColorsCreateForm } from "./ColorsCreateForm";
+export { default as ColorsUpdateForm } from "./ColorsUpdateForm";

@@ -1,33 +1,12 @@
 export const schema = {
     "models": {
-        "Discos": {
-            "name": "Discos",
+        "Colors": {
+            "name": "Colors",
             "fields": {
                 "id": {
                     "name": "id",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "title": {
-                    "name": "title",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "band": {
-                    "name": "band",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "year": {
-                    "name": "year",
-                    "isArray": false,
-                    "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -63,7 +42,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Discos",
+            "pluralName": "Colors",
             "attributes": [
                 {
                     "type": "model",
@@ -91,5 +70,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "1b96d193ecf97dc9e68aceacb341d236"
+    "version": "eba699ff0844f63311e759c10ab0ba28"
 };

@@ -5,7 +5,6 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Discos } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type ValidationResponse = {
@@ -13,39 +12,29 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type DiscosUpdateFormInputValues = {
-    title?: string;
-    band?: string;
-    year?: number;
+export declare type ColorsCreateFormInputValues = {
     color?: number;
     textcolor?: number;
 };
-export declare type DiscosUpdateFormValidationValues = {
-    title?: ValidationFunction<string>;
-    band?: ValidationFunction<string>;
-    year?: ValidationFunction<number>;
+export declare type ColorsCreateFormValidationValues = {
     color?: ValidationFunction<number>;
     textcolor?: ValidationFunction<number>;
 };
 export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type DiscosUpdateFormOverridesProps = {
-    DiscosUpdateFormGrid?: FormProps<GridProps>;
-    title?: FormProps<TextFieldProps>;
-    band?: FormProps<TextFieldProps>;
-    year?: FormProps<TextFieldProps>;
+export declare type ColorsCreateFormOverridesProps = {
+    ColorsCreateFormGrid?: FormProps<GridProps>;
     color?: FormProps<TextFieldProps>;
     textcolor?: FormProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type DiscosUpdateFormProps = React.PropsWithChildren<{
-    overrides?: DiscosUpdateFormOverridesProps | undefined | null;
+export declare type ColorsCreateFormProps = React.PropsWithChildren<{
+    overrides?: ColorsCreateFormOverridesProps | undefined | null;
 } & {
-    id?: string;
-    discos?: Discos;
-    onSubmit?: (fields: DiscosUpdateFormInputValues) => DiscosUpdateFormInputValues;
-    onSuccess?: (fields: DiscosUpdateFormInputValues) => void;
-    onError?: (fields: DiscosUpdateFormInputValues, errorMessage: string) => void;
+    clearOnSuccess?: boolean;
+    onSubmit?: (fields: ColorsCreateFormInputValues) => ColorsCreateFormInputValues;
+    onSuccess?: (fields: ColorsCreateFormInputValues) => void;
+    onError?: (fields: ColorsCreateFormInputValues, errorMessage: string) => void;
     onCancel?: () => void;
-    onChange?: (fields: DiscosUpdateFormInputValues) => DiscosUpdateFormInputValues;
-    onValidate?: DiscosUpdateFormValidationValues;
+    onChange?: (fields: ColorsCreateFormInputValues) => ColorsCreateFormInputValues;
+    onValidate?: ColorsCreateFormValidationValues;
 } & React.CSSProperties>;
-export default function DiscosUpdateForm(props: DiscosUpdateFormProps): React.ReactElement;
+export default function ColorsCreateForm(props: ColorsCreateFormProps): React.ReactElement;
